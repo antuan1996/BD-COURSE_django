@@ -52,7 +52,9 @@ class ResidentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Resident
         fields = (
-            'pk', 
+            'pk',
+            'first_name',
+            'last_name',
             'sex', 
             'age', 
         )

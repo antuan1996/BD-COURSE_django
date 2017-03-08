@@ -101,13 +101,20 @@ class DeviceType(models.Model):
 
 
 class Resident(models.Model):
+    genders = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('T', 'Other')
+    )
 
     # Fields
-    sex = models.CharField(max_length=1)
-    age = models.FloatField()
+    first_name = models.CharField(max_length=30, blank=False)
+    last_name = models.CharField(max_length=50, blank=True)
+    sex = models.CharField(max_length=1, choices=genders, default='M')
+    age = models.FloatField(blank=True)
 
     # Relationship Fields
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, )
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, primary_key=True)
     state = models.ForeignKey('home.ResidentState', )
 
     class Meta:
