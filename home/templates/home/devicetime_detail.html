@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'home_devicetime_list' %}">DeviceTime Listing</a></p>
+<table class="table">
+<tr><td>start_time</td><td>{{ object.start_time }}</td></tr>
+<tr><td>finish_time</td><td>{{ object.finish_time }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit DeviceTime</a>
+
+{% endblock %}

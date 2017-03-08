@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'home_sensorvalue_list' %}">SensorValue Listing</a></p>
+<table class="table">
+<tr><td>time</td><td>{{ object.time }}</td></tr>
+<tr><td>value</td><td>{{ object.value }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit SensorValue</a>
+
+{% endblock %}

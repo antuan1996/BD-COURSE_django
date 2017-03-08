@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'home_resident_list' %}">Resident Listing</a></p>
+<table class="table">
+<tr><td>sex</td><td>{{ object.sex }}</td></tr>
+<tr><td>age</td><td>{{ object.age }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit Resident</a>
+
+{% endblock %}

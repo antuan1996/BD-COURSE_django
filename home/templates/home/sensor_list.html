@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'home_sensor_list' %}">Sensor Listing</a></p>
+<table class="table">
+<tr>
+<td>ID</td><td>Link</td>
+    <td>name</td>
+    <td>min_value</td>
+    <td>max_value</td>
+</tr>
+{% for object in object_list %}
+<tr>
+    <td>{{object.pk}}</td>
+    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
+    <td>{{ object.name }}</td>
+    <td>{{ object.min_value }}</td>
+    <td>{{ object.max_value }}</td>
+</tr>
+{% endfor %}
+</table><a class="btn btn-primary" href="{% url 'home_sensor_create' %}">Create new Sensor</a>
+{% endblock %}
