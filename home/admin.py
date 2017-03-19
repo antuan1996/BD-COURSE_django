@@ -11,7 +11,7 @@ class DeviceAdminForm(forms.ModelForm):
 
 class DeviceAdmin(admin.ModelAdmin):
     form = DeviceAdminForm
-    list_display = ['name']
+    search_fields = ['name']
 
 admin.site.register(Device, DeviceAdmin)
 
@@ -25,7 +25,6 @@ class RoomAdminForm(forms.ModelForm):
 
 class RoomAdmin(admin.ModelAdmin):
     form = RoomAdminForm
-    list_display = ['name', 'area', 'height']
 
 admin.site.register(Room, RoomAdmin)
 
@@ -137,7 +136,14 @@ class SensorValueAdminForm(forms.ModelForm):
 
 class SensorValueAdmin(admin.ModelAdmin):
     form = SensorValueAdminForm
-    list_display = ['time', 'value']
+    list_display = ['time', 'value', 'sensor', 'get_room']
+    search_fields = ('id', 'value', 'sensor__name' ,'sensor__room__name')
+
+    def get_room(self, obj):
+        return obj.sensor.room
+
+    get_room.admin_order_field = 'sensor'  # Allows column order sorting
+    get_room.short_description = 'Room'  # Renames column head
 
 admin.site.register(SensorValue, SensorValueAdmin)
 
@@ -162,10 +168,11 @@ class DeviceTimeAdminForm(forms.ModelForm):
         model = DeviceTime
         fields = '__all__'
 
-
 class DeviceTimeAdmin(admin.ModelAdmin):
     form = DeviceTimeAdminForm
-    list_display = ['start_time', 'finish_time']
+    search_fields = ['id']
+    list_display = ['id', 'start_time', 'finish_time']
+
 
 admin.site.register(DeviceTime, DeviceTimeAdmin)
 

@@ -23,7 +23,7 @@ class Device(models.Model):
         ordering = ('-pk',)
 
     def __unicode__(self):
-        return u'%s' % self.pk
+        return u'%s' % self.name
 
     def get_absolute_url(self):
         return reverse('home_device_detail', args=(self.pk,))
@@ -45,7 +45,7 @@ class Room(models.Model):
         ordering = ('-pk',)
 
     def __unicode__(self):
-        return u'%s' % self.pk
+        return u'%s' % self.name
 
     def get_absolute_url(self):
         return reverse('home_room_detail', args=(self.pk,))
@@ -70,7 +70,7 @@ class Sensor(models.Model):
         ordering = ('-pk',)
 
     def __unicode__(self):
-        return u'%s' % self.pk
+        return u'%s' % self.name
 
     def get_absolute_url(self):
         return reverse('home_sensor_detail', args=(self.pk,))
@@ -90,7 +90,7 @@ class DeviceType(models.Model):
         ordering = ('-pk',)
 
     def __unicode__(self):
-        return u'%s' % self.pk
+        return u'%s' % self.value
 
     def get_absolute_url(self):
         return reverse('home_devicetype_detail', args=(self.pk,))
@@ -121,7 +121,7 @@ class Resident(models.Model):
         ordering = ('-pk',)
 
     def __unicode__(self):
-        return u'%s' % self.pk
+        return u'%s' % self.first_name
 
     def get_absolute_url(self):
         return reverse('home_resident_detail', args=(self.pk,))
@@ -141,7 +141,7 @@ class ResidentState(models.Model):
         ordering = ('-pk',)
 
     def __unicode__(self):
-        return u'%s' % self.pk
+        return u'%s' % self.value
 
     def get_absolute_url(self):
         return reverse('home_residentstate_detail', args=(self.pk,))
@@ -164,7 +164,7 @@ class ResidentActions(models.Model):
         ordering = ('-pk',)
 
     def __unicode__(self):
-        return u'%s' % self.pk
+        return u'%s %s action' % (self.resident, self.type)
 
     def get_absolute_url(self):
         return reverse('home_residentactions_detail', args=(self.pk,))
@@ -186,7 +186,7 @@ class ResidentActionTypes(models.Model):
         ordering = ('-pk',)
 
     def __unicode__(self):
-        return u'%s' % self.pk
+        return u'%s' % self.value
 
     def get_absolute_url(self):
         return reverse('home_residentactiontypes_detail', args=(self.pk,))
@@ -209,7 +209,7 @@ class ResidentResponse(models.Model):
         ordering = ('-pk',)
 
     def __unicode__(self):
-        return u'%s' % self.pk
+        return u"%s  's response" % self.resident
 
     def get_absolute_url(self):
         return reverse('home_residentresponse_detail', args=(self.pk,))
@@ -232,7 +232,7 @@ class SensorValue(models.Model):
         ordering = ('-pk',)
 
     def __unicode__(self):
-        return u'%s' % self.pk
+        return u'%s value' % self.sensor
 
     def get_absolute_url(self):
         return reverse('home_sensorvalue_detail', args=(self.pk,))
@@ -252,7 +252,7 @@ class SensorType(models.Model):
         ordering = ('-pk',)
 
     def __unicode__(self):
-        return u'%s' % self.pk
+        return u'%s' % self.value
 
     def get_absolute_url(self):
         return reverse('home_sensortype_detail', args=(self.pk,))
@@ -266,7 +266,7 @@ class DeviceTime(models.Model):
 
     # Fields
     start_time = models.DateTimeField()
-    finish_time = models.TextField(max_length=100)
+    finish_time = models.DateTimeField()
 
     # Relationship Fields
     device = models.ForeignKey('home.Device', )
@@ -275,7 +275,7 @@ class DeviceTime(models.Model):
         ordering = ('-pk',)
 
     def __unicode__(self):
-        return u'%s' % self.pk
+        return u'%s time' % self.device
 
     def get_absolute_url(self):
         return reverse('home_devicetime_detail', args=(self.pk,))
