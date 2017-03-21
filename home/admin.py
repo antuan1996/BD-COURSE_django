@@ -2,8 +2,8 @@ from django.contrib import admin
 from django import forms
 from .models import Device, Room, Sensor, DeviceType, Resident, ResidentState, ResidentActions, ResidentActionTypes, ResidentResponse, SensorValue, SensorType, DeviceTime
 
-class DeviceAdminForm(forms.ModelForm):
 
+class DeviceAdminForm(forms.ModelForm):
     class Meta:
         model = Device
         fields = '__all__'
@@ -66,7 +66,7 @@ class ResidentAdminForm(forms.ModelForm):
 
 class ResidentAdmin(admin.ModelAdmin):
     form = ResidentAdminForm
-    list_display = ['sex', 'age']
+    list_display = ['first_name', 'age', 'sex']
 
 admin.site.register(Resident, ResidentAdmin)
 
@@ -167,6 +167,7 @@ class DeviceTimeAdminForm(forms.ModelForm):
     class Meta:
         model = DeviceTime
         fields = '__all__'
+
 
 class DeviceTimeAdmin(admin.ModelAdmin):
     form = DeviceTimeAdminForm
