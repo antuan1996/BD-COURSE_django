@@ -61,7 +61,7 @@ class ResidentAdminForm(forms.ModelForm):
 
     class Meta:
         model = Resident
-        fields = '__all__'
+        fields = ['first_name', 'age', 'sex']
 
 
 class ResidentAdmin(admin.ModelAdmin):

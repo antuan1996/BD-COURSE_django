@@ -110,9 +110,9 @@ class DeviceType(models.Model):
 
 class Resident(models.Model):
     genders = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('T', 'Other')
+        ('M', 'Мужской'),
+        ('F', 'Женский'),
+        ('T', 'Другое')
     )
 
     # Fields
