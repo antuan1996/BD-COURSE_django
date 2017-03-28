@@ -123,7 +123,7 @@ class Resident(models.Model):
 
     # Relationship Fields
     user = models.OneToOneField(settings.AUTH_USER_MODEL, primary_key=True)
-    state = models.ForeignKey('home.ResidentState', verbose_name=u'Состояние')
+    state = models.ForeignKey('home.ResidentState', verbose_name=u'Состояние', null=True)
 
     class Meta:
         ordering = ('-pk',)

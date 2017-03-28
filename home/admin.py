@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.contrib import admin
 from django import forms
 from .models import Device, Room, Sensor, DeviceType, Resident, ResidentState, ResidentActions, ResidentActionTypes, ResidentResponse, SensorValue, SensorType, DeviceTime
@@ -122,7 +123,13 @@ class ResidentResponseAdminForm(forms.ModelForm):
 
 class ResidentResponseAdmin(admin.ModelAdmin):
     form = ResidentResponseAdminForm
-    list_display = ['satisfactory']
+    list_display = ['satisfactory', 'user_name']
+
+    def user_name(self, obj):
+        return obj.resident.first_name
+
+    user_name.admin_order_field = 'resident'  # Allows column order sorting
+    user_name.short_description = 'Житель'  # Renames column head
 
 admin.site.register(ResidentResponse, ResidentResponseAdmin)
 
@@ -143,7 +150,7 @@ class SensorValueAdmin(admin.ModelAdmin):
         return obj.sensor.room
 
     get_room.admin_order_field = 'sensor'  # Allows column order sorting
-    get_room.short_description = 'Room'  # Renames column head
+    get_room.short_description = u'Комната'  # Renames column head
 
 admin.site.register(SensorValue, SensorValueAdmin)
 
