@@ -225,7 +225,7 @@ class ResidentResponse(models.Model):
         verbose_name_plural = u"Отзывы пользователя"
 
     def __unicode__(self):
-        return u"%s  's response" % self.resident
+        return u"отзыв от жителя %s" % self.resident
 
     def get_absolute_url(self):
         return reverse('home_residentresponse_detail', args=(self.pk,))
@@ -249,7 +249,7 @@ class SensorValue(models.Model):
         verbose_name_plural = u"Значения датчика"
 
     def __unicode__(self):
-        return u'%s value' % self.sensor
+        return u'%s значение' % self.sensor
 
     def get_absolute_url(self):
         return reverse('home_sensorvalue_detail', args=(self.pk,))
