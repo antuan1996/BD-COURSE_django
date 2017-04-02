@@ -18,10 +18,12 @@ admin.site.register(Device, DeviceAdmin)
 
 
 class RoomAdminForm(forms.ModelForm):
-
     class Meta:
         model = Room
         fields = '__all__'
+
+    height = forms.FloatField(min_value=0.1, label='Высота стен')
+    area = forms.FloatField(min_value=0.1, label='Площадь пола')
 
 
 class RoomAdmin(admin.ModelAdmin):
@@ -63,6 +65,8 @@ class ResidentAdminForm(forms.ModelForm):
     class Meta:
         model = Resident
         fields = ['first_name', 'age', 'sex']
+
+    age = forms.FloatField(min_value=0.1, label='Возраст')
 
 
 class ResidentAdmin(admin.ModelAdmin):
@@ -123,7 +127,7 @@ class ResidentResponseAdminForm(forms.ModelForm):
 
 class ResidentResponseAdmin(admin.ModelAdmin):
     form = ResidentResponseAdminForm
-    list_display = ['satisfactory', 'user_name']
+    list_display = ['user_name', 'satisfactory']
 
     def user_name(self, obj):
         return obj.resident.first_name
@@ -179,8 +183,8 @@ class DeviceTimeAdminForm(forms.ModelForm):
 class DeviceTimeAdmin(admin.ModelAdmin):
     form = DeviceTimeAdminForm
     search_fields = ['id']
-    list_display = ['id', 'start_time', 'finish_time']
-
+    list_display = ['id', 'device', 'start_time', 'finish_time']
+    list_display_links = ('device', 'id')
 
 admin.site.register(DeviceTime, DeviceTimeAdmin)
 
