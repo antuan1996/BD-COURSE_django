@@ -181,7 +181,6 @@ class ResidentActions(models.Model):
     def get_absolute_url(self):
         return reverse('home_residentactions_detail', args=(self.pk,))
 
-
     def get_update_url(self):
         return reverse('home_residentactions_update', args=(self.pk,))
 
