@@ -221,7 +221,7 @@ class ResidentResponse(models.Model):
     class Meta:
         ordering = ('-pk',)
         verbose_name = u"Отзыв пользователя"
-        verbose_name_plural = u"Отзывы пользователя"
+        verbose_name_plural = u"Отзывы жителей"
 
     def __unicode__(self):
         return u"отзыв от жителя %s" % self.resident
